@@ -13,11 +13,6 @@ function mostraPalavrasChave(){
 function processaTexto(texto){
     let palavras = texto.split(/\P{L}+/u);
 
-    for (let i in palavras){
-        palavras[i].toLowerCase();
-    }
-    palavras = tiraPalavrasRuins(palavras);
-
     const frequencias = contaFrequencias(palavras);
     let ordenadas = Object.keys(frequencias).sort(ordenaPalavra);
 
@@ -47,12 +42,11 @@ function contaFrequencias(palavras){
     return palavras;
 
 }
-
 function tiraPalavrasRuins(palavras){
-    const PALAVRAS_RUINS = new Set(["para", "nós", "das", "como", "que"]);
-    const palavrasBoas = [];
+    const PALAVRAS_RUINS = new Set(["para", "nós", "das", "como", "que"])
+    const palavrasBoas =[];
 
-    for (let palavras of palavras){
+    for(let palavra of palavras){
         if (!PALAVRAS_RUINS.has(palavra) && palavra.length > 2){
             palavrasBoas.push(palavra);
         }
